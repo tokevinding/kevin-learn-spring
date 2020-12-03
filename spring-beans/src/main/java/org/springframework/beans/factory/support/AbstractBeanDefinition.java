@@ -36,13 +36,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Base class for concrete, full-fledged {@link BeanDefinition} classes,
- * factoring out common properties of {@link GenericBeanDefinition},
- * {@link RootBeanDefinition}, and {@link ChildBeanDefinition}.
+ * 具体的、成熟的{@link BeanDefinition}类的基类，提取出{@link GenericBeanDefinition}
+ * 、{@link RootBeanDefinition}和{@link ChildBeanDefinition}的公共属性。
  *
- * <p>The autowire constants match the ones defined in the
- * {@link AutowireCapableBeanFactory}
- * interface.
+ * <p>自动装配常数匹配在{@link AutowireCapableBeanFactory}接口中定义的自动装配常数。
  *
  * @author Rod Johnson
  * @author Juergen Hoeller
@@ -57,38 +54,36 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		implements BeanDefinition, Cloneable {
 
 	/**
-	 * Constant for the default scope name: {@code ""}, equivalent to singleton
-	 * status unless overridden from a parent bean definition (if applicable).
+	 * 默认作用域名称的常量:{@code ""}，相当于单例状态，除非父bean定义覆盖(如果适用)。
 	 */
 	public static final String SCOPE_DEFAULT = "";
 
 	/**
-	 * Constant that indicates no autowiring at all.
+	 * 常量，表示根本没有自动装配。
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_NO = AutowireCapableBeanFactory.AUTOWIRE_NO;
 
 	/**
-	 * Constant that indicates autowiring bean properties by name.
+	 * 常量，按名称指示自动装配bean属性。
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_BY_NAME = AutowireCapableBeanFactory.AUTOWIRE_BY_NAME;
 
 	/**
-	 * Constant that indicates autowiring bean properties by type.
+	 * 常量，按类型指示自动装配bean属性。
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_BY_TYPE = AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE;
 
 	/**
-	 * Constant that indicates autowiring a constructor.
+	 * 常量，指示自动装配构造函数。
 	 * @see #setAutowireMode
 	 */
 	public static final int AUTOWIRE_CONSTRUCTOR = AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR;
 
 	/**
-	 * Constant that indicates determining an appropriate autowire strategy
-	 * through introspection of the bean class.
+	 * 常量，指示通过bean类的内省来确定适当的自动装配策略。
 	 * @see #setAutowireMode
 	 * @deprecated as of Spring 3.0: If you are using mixed autowiring strategies,
 	 * use annotation-based autowiring for clearer demarcation of autowiring needs.
@@ -97,40 +92,36 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	public static final int AUTOWIRE_AUTODETECT = AutowireCapableBeanFactory.AUTOWIRE_AUTODETECT;
 
 	/**
-	 * Constant that indicates no dependency check at all.
+	 * 表示根本没有依赖项检查的常量。
 	 * @see #setDependencyCheck
 	 */
 	public static final int DEPENDENCY_CHECK_NONE = 0;
 
 	/**
-	 * Constant that indicates dependency checking for object references.
+	 * 常量，指示对对象引用进行依赖项检查。
 	 * @see #setDependencyCheck
 	 */
 	public static final int DEPENDENCY_CHECK_OBJECTS = 1;
 
 	/**
-	 * Constant that indicates dependency checking for "simple" properties.
+	 * 常量，指示对“简单”属性的依赖项检查。
 	 * @see #setDependencyCheck
 	 * @see org.springframework.beans.BeanUtils#isSimpleProperty
 	 */
 	public static final int DEPENDENCY_CHECK_SIMPLE = 2;
 
 	/**
-	 * Constant that indicates dependency checking for all properties
+	 * 常量，指示对所有属性进行依赖项检查
 	 * (object references as well as "simple" properties).
 	 * @see #setDependencyCheck
 	 */
 	public static final int DEPENDENCY_CHECK_ALL = 3;
 
 	/**
-	 * Constant that indicates the container should attempt to infer the
-	 * {@link #setDestroyMethodName destroy method name} for a bean as opposed to
-	 * explicit specification of a method name. The value {@value} is specifically
-	 * designed to include characters otherwise illegal in a method name, ensuring
-	 * no possibility of collisions with legitimately named methods having the same
-	 * name.
-	 * <p>Currently, the method names detected during destroy method inference
-	 * are "close" and "shutdown", if present on the specific bean class.
+	 * 常量，指示容器应该尝试为bean推断{@link #setDestroyMethodName 销毁方法名}，而不是显式地指定方法名。
+	 * 值{@value}是专门设计用于在方法名中包含非法字符的，以确保不会与同名的合法命名方法发生冲突。
+	 *
+	 * <p>当前，在销毁方法推断过程中检测到的方法名是“close”和“shutdown”，如果存在于特定bean类上的话。
 	 */
 	public static final String INFER_METHOD = "(inferred)";
 

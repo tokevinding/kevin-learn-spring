@@ -95,10 +95,9 @@ public abstract class CollectionUtils {
 	}
 
 	/**
-	 * Merge the given Properties instance into the given Map,
-	 * copying all properties (key-value pairs) over.
-	 * <p>Uses {@code Properties.propertyNames()} to even catch
-	 * default properties linked into the original Properties instance.
+	 * 将给定的属性实例合并到给定的映射中，复制所有属性(键值对)。
+	 * <p>使用{@code Properties.propertyNames()}甚至捕获链接到原始属性实例中的默认属性。
+	 *
 	 * @param props the Properties instance to merge (may be {@code null})
 	 * @param map the target Map to merge the properties into
 	 */
@@ -112,7 +111,7 @@ public abstract class CollectionUtils {
 				String key = (String) en.nextElement();
 				Object value = props.get(key);
 				if (value == null) {
-					// Allow for defaults fallback or potentially overridden accessor...
+					// 允许默认回退或可能被覆盖的访问器…
 					value = props.getProperty(key);
 				}
 				map.put((K) key, (V) value);

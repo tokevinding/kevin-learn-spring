@@ -16,18 +16,17 @@
 
 package org.springframework.core.io.support;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.UnknownHostException;
-import java.util.Properties;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.core.io.Resource;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.DefaultPropertiesPersister;
 import org.springframework.util.PropertiesPersister;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.util.Properties;
 
 /**
  * Base class for JavaBean-style components that need to load properties
@@ -136,25 +135,25 @@ public abstract class PropertiesLoaderSupport {
 
 
 	/**
-	 * Return a merged Properties instance containing both the
-	 * loaded properties and properties set on this FactoryBean.
+	 * 返回一个合并的属性实例，其中包含在这个FactoryBean上加载的属性和设置的属性。
 	 */
 	protected Properties mergeProperties() throws IOException {
 		Properties result = new Properties();
 
 		if (this.localOverride) {
-			// Load properties from file upfront, to let local properties override.
+			// 预先从（类）文件加载属性，让本地属性覆盖。
 			loadProperties(result);
 		}
 
 		if (this.localProperties != null) {
+			//系统配置属性覆盖原属性
 			for (Properties localProp : this.localProperties) {
 				CollectionUtils.mergePropertiesIntoMap(localProp, result);
 			}
 		}
 
 		if (!this.localOverride) {
-			// Load properties from file afterwards, to let those properties override.
+			// 然后从文件加载属性，以让这些属性覆盖。
 			loadProperties(result);
 		}
 
@@ -162,7 +161,7 @@ public abstract class PropertiesLoaderSupport {
 	}
 
 	/**
-	 * Load properties into the given instance.
+	 * 将属性加载到给定实例中。
 	 * @param props the Properties instance to load into
 	 * @throws IOException in case of I/O errors
 	 * @see #setLocations

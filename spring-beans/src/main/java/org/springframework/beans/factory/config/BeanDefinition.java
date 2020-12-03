@@ -21,13 +21,10 @@ import org.springframework.beans.MutablePropertyValues;
 import org.springframework.core.AttributeAccessor;
 
 /**
- * A BeanDefinition describes a bean instance, which has property values,
- * constructor argument values, and further information supplied by
- * concrete implementations.
+ * BeanDefinition描述一个bean实例，该实例具有属性值、构造函数参数值和由具体实现提供的进一步信息。
  *
- * <p>This is just a minimal interface: The main intention is to allow a
- * {@link BeanFactoryPostProcessor} such as {@link PropertyPlaceholderConfigurer}
- * to introspect and modify property values and other bean metadata.
+ * <p>这只是一个最小的接口:主要目的是允许{@link BeanFactoryPostProcessor}
+ * ，比如{@link PropertyPlaceholderConfigurer}来内省和修改属性值和其他bean元数据。
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -39,47 +36,41 @@ import org.springframework.core.AttributeAccessor;
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**
-	 * Scope identifier for the standard singleton scope: "singleton".
-	 * <p>Note that extended bean factories might support further scopes.
+	 * 标准单例范围的范围标识符:“单例”。<p>注意扩展的bean工厂可能支持进一步的范围。
 	 * @see #setScope
 	 */
 	String SCOPE_SINGLETON = ConfigurableBeanFactory.SCOPE_SINGLETON;
 
 	/**
-	 * Scope identifier for the standard prototype scope: "prototype".
-	 * <p>Note that extended bean factories might support further scopes.
+	 * 标准原型范围标识符:“prototype”。注意扩展的bean工厂可能支持进一步的作用域。
 	 * @see #setScope
 	 */
 	String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 
 	/**
-	 * Role hint indicating that a {@code BeanDefinition} is a major part
-	 * of the application. Typically corresponds to a user-defined bean.
+	 * 指示{@code BeanDefinition}是应用程序的主要部分的角色提示。通常对应于用户定义的bean。
 	 */
 	int ROLE_APPLICATION = 0;
 
 	/**
-	 * Role hint indicating that a {@code BeanDefinition} is a supporting
-	 * part of some larger configuration, typically an outer
+	 * 角色提示，指示{@code BeanDefinition}是某个较大配置(通常是外部配置)的支持部分
 	 * {@link org.springframework.beans.factory.parsing.ComponentDefinition}.
-	 * {@code SUPPORT} beans are considered important enough to be aware
-	 * of when looking more closely at a particular
+	 * {@code SUPPORT} bean被认为是非常重要的，因此在更仔细地观察某个特定的对象时可以意识到它的重要性
 	 * {@link org.springframework.beans.factory.parsing.ComponentDefinition},
-	 * but not when looking at the overall configuration of an application.
+	 * 但在查看应用程序的总体配置时就不是这样了。
 	 */
 	int ROLE_SUPPORT = 1;
 
 	/**
-	 * Role hint indicating that a {@code BeanDefinition} is providing an
-	 * entirely background role and has no relevance to the end-user. This hint is
-	 * used when registering beans that are completely part of the internal workings
-	 * of a {@link org.springframework.beans.factory.parsing.ComponentDefinition}.
+	 * 角色提示，指示{@code BeanDefinition}正在提供一个完全后台的角色，并且与最终用户没有关联。
+	 * 当注册完全属于内部工作的bean时，会使用这个提示：
+	 *  {@link org.springframework.beans.factory.parsing.ComponentDefinition}.
 	 */
 	int ROLE_INFRASTRUCTURE = 2;
 
 
-	// Modifiable attributes
+	// 修改属性
 
 	/**
 	 * Set the name of the parent definition of this bean definition, if any.
@@ -153,11 +144,9 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	String[] getDependsOn();
 
 	/**
-	 * Set whether this bean is a candidate for getting autowired into some other bean.
-	 * <p>Note that this flag is designed to only affect type-based autowiring.
-	 * It does not affect explicit references by name, which will get resolved even
-	 * if the specified bean is not marked as an autowire candidate. As a consequence,
-	 * autowiring by name will nevertheless inject a bean if the name matches.
+	 * 设置这个bean是否可以自动加载到其他bean中。<p>注意这个标志被设计为只影响基于类型的自动装配。
+	 * 它不会影响名称的显式引用，即使指定的bean没有标记为自动装配候选对象，也会被解析。
+	 * 因此，如果名称匹配，按名称自动装配仍然会注入一个bean。
 	 */
 	void setAutowireCandidate(boolean autowireCandidate);
 
@@ -213,14 +202,14 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	ConstructorArgumentValues getConstructorArgumentValues();
 
 	/**
-	 * Return the property values to be applied to a new instance of the bean.
-	 * <p>The returned instance can be modified during bean factory post-processing.
-	 * @return the MutablePropertyValues object (never {@code null})
+	 * 返回应用于bean的新实例的属性值。<p>可以在bean工厂后处理期间修改返回的实例。
+	 *
+	 * @return MutablePropertyValues对象(never {@code null})
 	 */
 	MutablePropertyValues getPropertyValues();
 
 
-	// Read-only attributes
+	// 只读属性
 
 	/**
 	 * Return whether this a <b>Singleton</b>, with a single, shared instance
@@ -237,14 +226,14 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	boolean isPrototype();
 
 	/**
-	 * Return whether this bean is "abstract", that is, not meant to be instantiated.
+	 * 返回这个bean是否“抽象”，也就是说，是否意味着不需要实例化。
 	 */
 	boolean isAbstract();
 
 	/**
-	 * Get the role hint for this {@code BeanDefinition}. The role hint
-	 * provides the frameworks as well as tools with an indication of
-	 * the role and importance of a particular {@code BeanDefinition}.
+	 * 获取这个{@code BeanDefinition}的角色提示。
+	 * 角色提示为框架和工具提供了关于特定{@code BeanDefinition}的角色和重要性的指示。
+	 *
 	 * @see #ROLE_APPLICATION
 	 * @see #ROLE_SUPPORT
 	 * @see #ROLE_INFRASTRUCTURE
@@ -252,21 +241,18 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	int getRole();
 
 	/**
-	 * Return a human-readable description of this bean definition.
+	 * 返回这个bean定义的人类可读的描述。
 	 */
 	String getDescription();
 
 	/**
-	 * Return a description of the resource that this bean definition
-	 * came from (for the purpose of showing context in case of errors).
+	 * 返回这个bean定义所来自的资源的描述(用于在出现错误时显示上下文)。
 	 */
 	String getResourceDescription();
 
 	/**
-	 * Return the originating BeanDefinition, or {@code null} if none.
-	 * Allows for retrieving the decorated bean definition, if any.
-	 * <p>Note that this method returns the immediate originator. Iterate through the
-	 * originator chain to find the original BeanDefinition as defined by the user.
+	 * 返回原始BeanDefinition，如果没有，则返回{@code null}。允许检索修饰bean定义(如果有的话)。
+	 * <p>注意，此方法返回直接的发起者。遍历originator链以查找用户定义的原始BeanDefinition。
 	 */
 	BeanDefinition getOriginatingBeanDefinition();
 

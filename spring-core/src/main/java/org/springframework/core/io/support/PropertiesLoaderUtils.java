@@ -16,6 +16,13 @@
 
 package org.springframework.core.io.support;
 
+import org.springframework.core.io.Resource;
+import org.springframework.util.Assert;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.DefaultPropertiesPersister;
+import org.springframework.util.PropertiesPersister;
+import org.springframework.util.ResourceUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -23,13 +30,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Enumeration;
 import java.util.Properties;
-
-import org.springframework.core.io.Resource;
-import org.springframework.util.Assert;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.DefaultPropertiesPersister;
-import org.springframework.util.PropertiesPersister;
-import org.springframework.util.ResourceUtils;
 
 /**
  * Convenient utility methods for loading of {@code java.util.Properties},
@@ -73,7 +73,7 @@ public abstract class PropertiesLoaderUtils {
 	}
 
 	/**
-	 * Actually load properties from the given EncodedResource into the given Properties instance.
+	 * 实际上从给定的EncodedResource加载属性到给定的属性实例。
 	 * @param props the Properties instance to load into
 	 * @param resource the resource to load from
 	 * @param persister the PropertiesPersister to use

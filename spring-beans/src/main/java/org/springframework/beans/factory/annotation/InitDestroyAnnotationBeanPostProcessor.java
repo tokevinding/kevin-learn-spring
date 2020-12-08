@@ -16,6 +16,7 @@
 
 package org.springframework.beans.factory.annotation;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
@@ -128,6 +129,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("InitDestroyAnnotationBeanPostProcessor - postProcessBeforeInitialization");
 		LifecycleMetadata metadata = findLifecycleMetadata(bean.getClass());
 		try {
 			metadata.invokeInitMethods(bean, beanName);
@@ -143,6 +145,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("InitDestroyAnnotationBeanPostProcessor - postProcessAfterInitialization");
 		return bean;
 	}
 
@@ -174,7 +177,7 @@ public class InitDestroyAnnotationBeanPostProcessor
 
 	private LifecycleMetadata findLifecycleMetadata(Class<?> clazz) {
 		if (this.lifecycleMetadataCache == null) {
-			// Happens after deserialization, during destruction...
+			// 发生在反序列化之后，在破坏期间…
 			return buildLifecycleMetadata(clazz);
 		}
 		// 首先对并发映射进行快速检查，使用最小的锁定。

@@ -10,6 +10,18 @@
     <packaging>maven-plugin</packaging>
     <name>kevin-learn-source Maven Mojo</name>
     <url>http://maven.apache.org</url>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -58,6 +70,11 @@
             <groupId>org.kevinLearnSpring</groupId>
             <artifactId>spring-instrument</artifactId>
             <version>4.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.kevin</groupId>
+            <artifactId>kevin-common</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 </project>

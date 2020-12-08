@@ -16,28 +16,26 @@
 
 package org.springframework.aop.aspectj.annotation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
-
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 /**
- * {@link AspectJAwareAdvisorAutoProxyCreator} subclass that processes all AspectJ
- * annotation aspects in the current application context, as well as Spring Advisors.
+ * 支持注释的Aspect J自动代理创建器
  *
- * <p>Any AspectJ annotated classes will automatically be recognized, and their
- * advice applied if Spring AOP's proxy-based model is capable of applying it.
- * This covers method execution joinpoints.
+ * {@link AspectJAwareAdvisorAutoProxyCreator}子类，它处理当前应用程序上下文中所有AspectJ注释方面，以及Spring顾问。
  *
- * <p>If the &lt;aop:include&gt; element is used, only @AspectJ beans with names matched by
- * an include pattern will be considered as defining aspects to use for Spring auto-proxying.
+ * 任何AspectJ注释的类都会被自动识别，如果Spring AOP的基于代理的模型能够应用它们，它们的建议就会被应用。这包括方法执行连接点。
  *
- * <p>Processing of Spring Advisors follows the rules established in
+ * < p >如果& lt; aop: include&gt;元素使用时，只有名称与包含模式匹配的@AspectJ bean才会被认为定义了用于Spring自动代理的方面。
+ *
+ * <p>所建立的规则遵循Spring advisor的处理
  * {@link org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator}.
  *
  * @author Rod Johnson
@@ -84,9 +82,9 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 
 	@Override
 	protected List<Advisor> findCandidateAdvisors() {
-		// Add all the Spring advisors found according to superclass rules.
+		// 根据超类规则添加找到的所有Spring顾问。
 		List<Advisor> advisors = super.findCandidateAdvisors();
-		// Build Advisors for all AspectJ aspects in the bean factory.
+		// bean工厂中所有AspectJ方面的构建顾问。
 		advisors.addAll(this.aspectJAdvisorsBuilder.buildAspectJAdvisors());
 		return advisors;
 	}
@@ -126,8 +124,7 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AspectJAwareAdvisorA
 
 
 	/**
-	 * Subclass of BeanFactoryAspectJAdvisorsBuilderAdapter that delegates to
-	 * surrounding AnnotationAwareAspectJAutoProxyCreator facilities.
+	 * BeanFactoryAspectJAdvisorsBuilderAdapter的子类，委托给周围的AnnotationAwareAspectJAutoProxyCreator设施。
 	 */
 	private class BeanFactoryAspectJAdvisorsBuilderAdapter extends BeanFactoryAspectJAdvisorsBuilder {
 

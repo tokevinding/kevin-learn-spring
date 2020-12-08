@@ -16,6 +16,7 @@
 
 package org.springframework.aop.framework;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -56,11 +57,13 @@ public abstract class AbstractAdvisingBeanPostProcessor extends ProxyProcessorSu
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) {
+		ConsoleOutputUtils.hr("AbstractAutoProxyCreator - postProcessBeforeInitialization");
 		return bean;
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
+		ConsoleOutputUtils.hr("AbstractAdvisingBeanPostProcessor - postProcessAfterInitialization");
 		if (bean instanceof AopInfrastructureBean) {
 			// Ignore AOP infrastructure such as scoped proxies.
 			return bean;

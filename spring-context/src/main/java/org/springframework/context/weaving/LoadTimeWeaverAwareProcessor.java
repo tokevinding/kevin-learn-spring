@@ -16,6 +16,7 @@
 
 package org.springframework.context.weaving;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -89,6 +90,7 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("LoadTimeWeaverAwareProcessor - postProcessBeforeInitialization");
 		if (bean instanceof LoadTimeWeaverAware) {
 			LoadTimeWeaver ltw = this.loadTimeWeaver;
 			if (ltw == null) {
@@ -104,6 +106,7 @@ public class LoadTimeWeaverAwareProcessor implements BeanPostProcessor, BeanFact
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String name) {
+		ConsoleOutputUtils.hr("LoadTimeWeaverAwareProcessor - postProcessAfterInitialization");
 		return bean;
 	}
 

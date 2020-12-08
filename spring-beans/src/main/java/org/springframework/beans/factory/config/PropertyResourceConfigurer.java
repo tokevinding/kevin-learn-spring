@@ -16,16 +16,17 @@
 
 package org.springframework.beans.factory.config;
 
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Properties;
-
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.core.Ordered;
 import org.springframework.core.PriorityOrdered;
 import org.springframework.core.io.support.PropertiesLoaderSupport;
 import org.springframework.util.ObjectUtils;
+
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Properties;
 
 /**
  * Allows for configuration of individual bean property values from a property resource,
@@ -76,6 +77,8 @@ public abstract class PropertyResourceConfigurer extends PropertiesLoaderSupport
 	 */
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+		ConsoleOutputUtils.hrl("PropertyResourceConfigurer - postProcessBeanFactory");
+
 		try {
 			Properties mergedProps = mergeProperties();
 

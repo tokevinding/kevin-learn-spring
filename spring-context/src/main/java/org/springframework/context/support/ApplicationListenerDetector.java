@@ -16,6 +16,7 @@
 
 package org.springframework.context.support;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.DestructionAwareBeanPostProcessor;
@@ -62,11 +63,13 @@ class ApplicationListenerDetector implements DestructionAwareBeanPostProcessor, 
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) {
+		ConsoleOutputUtils.hr("ApplicationListenerDetector - postProcessBeforeInitialization");
 		return bean;
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
+		ConsoleOutputUtils.hr("ApplicationListenerDetector - postProcessAfterInitialization");
 		if (this.applicationContext != null && bean instanceof ApplicationListener) {
 			// potentially not detected as a listener by getBeanNamesForType retrieval
 			Boolean flag = this.singletonNames.get(beanName);

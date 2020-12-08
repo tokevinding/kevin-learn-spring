@@ -16,6 +16,7 @@
 
 package org.springframework.context.support;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -328,11 +329,13 @@ class PostProcessorRegistrationDelegate {
 
 		@Override
 		public Object postProcessBeforeInitialization(Object bean, String beanName) {
+			ConsoleOutputUtils.hr("BeanPostProcessorChecker - postProcessBeforeInitialization");
 			return bean;
 		}
 
 		@Override
 		public Object postProcessAfterInitialization(Object bean, String beanName) {
+			ConsoleOutputUtils.hr("BeanPostProcessorChecker - postProcessAfterInitialization");
 			if (bean != null && !(bean instanceof BeanPostProcessor) && !isInfrastructureBean(beanName) &&
 					this.beanFactory.getBeanPostProcessorCount() < this.beanPostProcessorTargetCount) {
 				if (logger.isInfoEnabled()) {

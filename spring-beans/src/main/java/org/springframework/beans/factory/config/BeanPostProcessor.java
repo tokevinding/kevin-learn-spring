@@ -42,10 +42,9 @@ import org.springframework.beans.BeansException;
 public interface BeanPostProcessor {
 
 	/**
-	 * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
-	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
-	 * or a custom init-method). The bean will already be populated with property values.
-	 * The returned bean instance may be a wrapper around the original.
+	 * 在</i>任何bean初始化回调之前，将这个BeanPostProcessor应用到给定的新bean实例<i>
+	 *     中(如初始化bean的{@code afterPropertiesSet}或自定义的init方法)。bean已经填充了属性值。
+	 *     返回的bean实例可能是原始bean的包装器。
 	 * @param bean the new bean instance
 	 * @param beanName the name of the bean
 	 * @return the bean instance to use, either the original or a wrapped one;
@@ -56,17 +55,14 @@ public interface BeanPostProcessor {
 	Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException;
 
 	/**
-	 * Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
-	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
-	 * or a custom init-method). The bean will already be populated with property values.
-	 * The returned bean instance may be a wrapper around the original.
-	 * <p>In case of a FactoryBean, this callback will be invoked for both the FactoryBean
-	 * instance and the objects created by the FactoryBean (as of Spring 2.0). The
-	 * post-processor can decide whether to apply to either the FactoryBean or created
-	 * objects or both through corresponding {@code bean instanceof FactoryBean} checks.
-	 * <p>This callback will also be invoked after a short-circuiting triggered by a
-	 * {@link InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation} method,
-	 * in contrast to all other BeanPostProcessor callbacks.
+	 * 在</i>之后，将这个BeanPostProcessor应用到任何bean初始化回调(如初始化bean的{@code afterPropertiesSet}
+	 * 或自定义的init方法)后的新bean实例<i>。bean已经填充了属性值。返回的bean实例可能是原始bean的包装器。
+	 * <p>对于FactoryBean，这个回调将被同时调用FactoryBean实例和由FactoryBean创建的对象(从Spring 2.0开始)。
+	 * 后处理器可以通过相应的{@code bean instanceof FactoryBean}检查来决定是应用到FactoryBean还是创建的对象
+	 * ，或者两者都应用。<p>这个回调也会在一个
+	 * {@link InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation}方法触发短路后被调用
+	 * ，这与其他所有BeanPostProcessor回调形成对比。
+	 *
 	 * @param bean the new bean instance
 	 * @param beanName the name of the bean
 	 * @return the bean instance to use, either the original or a wrapped one;

@@ -16,6 +16,7 @@
 
 package org.springframework.aop.framework.autoproxy;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.aopalliance.aop.Advice;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -280,6 +281,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) {
+		ConsoleOutputUtils.hr("AbstractAutoProxyCreator - postProcessBeforeInitialization");
 		return bean;
 	}
 
@@ -290,6 +292,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	 */
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("AbstractAutoProxyCreator - postProcessAfterInitialization");
 		if (bean != null) {
 			Object cacheKey = getCacheKey(bean.getClass(), beanName);
 			if (!this.earlyProxyReferences.contains(cacheKey)) {

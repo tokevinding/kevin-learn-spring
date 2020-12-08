@@ -16,11 +16,12 @@
 
 package org.springframework.beans.factory.config;
 
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Constructor;
-
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
+
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Constructor;
 
 /**
  * Adapter that implements all methods on {@link SmartInstantiationAwareBeanPostProcessor}
@@ -73,11 +74,13 @@ public abstract class InstantiationAwareBeanPostProcessorAdapter implements Smar
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("InstantiationAwareBeanPostProcessorAdapter - postProcessBeforeInitialization");
 		return bean;
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("InstantiationAwareBeanPostProcessorAdapter - postProcessAfterInitialization");
 		return bean;
 	}
 

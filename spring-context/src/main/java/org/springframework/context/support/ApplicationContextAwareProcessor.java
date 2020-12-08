@@ -16,10 +16,7 @@
 
 package org.springframework.context.support;
 
-import java.security.AccessControlContext;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.Aware;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -32,6 +29,10 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.util.StringValueResolver;
+
+import java.security.AccessControlContext;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 
 /**
  * {@link BeanPostProcessor}
@@ -75,6 +76,7 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 
 	@Override
 	public Object postProcessBeforeInitialization(final Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("ApplicationContextAwareProcessor - postProcessBeforeInitialization");
 		AccessControlContext acc = null;
 
 		if (System.getSecurityManager() != null &&
@@ -125,6 +127,7 @@ class ApplicationContextAwareProcessor implements BeanPostProcessor {
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
+		ConsoleOutputUtils.hr("ApplicationContextAwareProcessor - postProcessAfterInitialization");
 		return bean;
 	}
 

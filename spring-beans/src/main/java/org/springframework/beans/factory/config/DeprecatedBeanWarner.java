@@ -16,6 +16,7 @@
 
 package org.springframework.beans.factory.config;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -54,6 +55,8 @@ public class DeprecatedBeanWarner implements BeanFactoryPostProcessor {
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+		ConsoleOutputUtils.hrl("DeprecatedBeanWarner - postProcessBeanFactory");
+
 		if (isLogEnabled()) {
 			String[] beanNames = beanFactory.getBeanDefinitionNames();
 			for (String beanName : beanNames) {

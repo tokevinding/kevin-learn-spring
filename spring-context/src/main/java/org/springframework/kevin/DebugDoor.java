@@ -12,7 +12,7 @@ import org.springframework.kevin.beans.AllTypeBeanImpl;
 public class DebugDoor {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context
-                = new AnnotationConfigApplicationContext("org.springframework.kevin.beans");
+                = new AnnotationConfigApplicationContext("org.springframework.kevin");
 //        SimpleBean bean = context.getBean(SimpleBean.class);
         AllTypeBean bean = context.getBean(AllTypeBean.class);
         bean.abstractPrint();

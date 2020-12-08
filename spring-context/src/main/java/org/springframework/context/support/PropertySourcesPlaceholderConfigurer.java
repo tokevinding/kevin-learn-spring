@@ -16,6 +16,7 @@
 
 package org.springframework.context.support;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -115,6 +116,8 @@ public class PropertySourcesPlaceholderConfigurer extends PlaceholderConfigurerS
 	 */
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+		ConsoleOutputUtils.hrl("PropertySourcesPlaceholderConfigurer - postProcessBeanFactory");
+
 		if (this.propertySources == null) {
 			this.propertySources = new MutablePropertySources();
 			if (this.environment != null) {

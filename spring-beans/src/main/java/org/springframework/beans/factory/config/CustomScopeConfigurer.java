@@ -16,15 +16,16 @@
 
 package org.springframework.beans.factory.config;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.core.Ordered;
 import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Simple {@link BeanFactoryPostProcessor} implementation that registers
@@ -93,6 +94,7 @@ public class CustomScopeConfigurer implements BeanFactoryPostProcessor, BeanClas
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+		ConsoleOutputUtils.hrl("CustomScopeConfigurer - postProcessBeanFactory");
 		if (this.scopes != null) {
 			for (Map.Entry<String, Object> entry : this.scopes.entrySet()) {
 				String scopeKey = entry.getKey();

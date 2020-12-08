@@ -16,17 +16,18 @@
 
 package org.springframework.validation.beanvalidation;
 
-import java.util.Iterator;
-import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Simple {@link BeanPostProcessor} that checks JSR-303 constraint annotations
@@ -82,6 +83,7 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("BeanValidationPostProcessor - postProcessBeforeInitialization");
 		if (!this.afterInitialization) {
 			doValidate(bean);
 		}
@@ -90,6 +92,7 @@ public class BeanValidationPostProcessor implements BeanPostProcessor, Initializ
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("BeanValidationPostProcessor - postProcessAfterInitialization");
 		if (this.afterInitialization) {
 			doValidate(bean);
 		}

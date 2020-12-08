@@ -16,6 +16,7 @@
 
 package org.springframework.aop.framework.adapter;
 
+import com.kevin.common.utils.print.ConsoleOutputUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
@@ -50,11 +51,14 @@ public class AdvisorAdapterRegistrationManager implements BeanPostProcessor {
 
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("AdvisorAdapterRegistrationManager - postProcessBeforeInitialization");
+
 		return bean;
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		ConsoleOutputUtils.hr("AdvisorAdapterRegistrationManager - postProcessAfterInitialization");
 		if (bean instanceof AdvisorAdapter){
 			this.advisorAdapterRegistry.registerAdvisorAdapter((AdvisorAdapter) bean);
 		}

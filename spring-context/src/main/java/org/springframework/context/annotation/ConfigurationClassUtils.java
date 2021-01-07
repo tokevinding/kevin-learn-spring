@@ -149,6 +149,11 @@ abstract class ConfigurationClassUtils {
 	}
 
 	/**
+	 * 检查给定的元数据是否有lite配置类候选
+	 * (例如，一个带有{@code @Component}注解的类，或者只有{@code @Import}声明或者{@code @Bean方法}的类)。
+	 *
+	 * 如果给定的类要作为lite配置类处理，只需注册它并扫描它以寻找{@code @Bean}方法，则@return {@code true}注释类的元数据
+	 *
 	 * Check the given metadata for a lite configuration class candidate
 	 * (e.g. a class annotated with {@code @Component} or just having
 	 * {@code @Import} declarations or {@code @Bean methods}).
